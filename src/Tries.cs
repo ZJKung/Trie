@@ -5,10 +5,6 @@ public class TrieNode
     public TrieNode()
     {
     }
-    public TrieNode(char c)
-    {
-        Child[c - 'a'] = new TrieNode();
-    }
     public TrieNode[] Child { get; set; } = new TrieNode[26];
     public bool WordEnd { get; set; } = false;
 
@@ -18,7 +14,7 @@ public class TrieNode
         foreach (var c in word)
         {
             if (node.Child[c - 'a'] == null)
-                node.Child[c - 'a'] = new TrieNode(c);
+                node.Child[c - 'a'] = new TrieNode();
             node = node.Child[c - 'a'];
         }
         node.WordEnd = true;
@@ -48,14 +44,14 @@ public class TrieNode
     }
     public void PrintTrie()
     {
-        TrieNode node = this;
         for (int i = 0; i < 26; i++)
         {
-            if (node.Child[i] != null)
+            if (Child[i] != null)
             {
-                Console.WriteLine((char)(i + 'a') + "->" + $"{(node.Child[i].WordEnd ? "End" : "")}");
-                node.Child[i].PrintTrie();
+                Console.WriteLine((char)(i + 'a') + "->" + $"{(Child[i].WordEnd ? "End" : "")}");
+                Child[i].PrintTrie();
             }
         }
     }
+
 }

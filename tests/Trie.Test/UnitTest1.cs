@@ -12,7 +12,5 @@ public class UnitTest1
         Assert.True(trie.StartsWith("app")); // returns true
         trie.Insert("app");
         Assert.True(trie.Search("app"));     // returns true
-        trie.PrintTrie();
-
     }
 }
